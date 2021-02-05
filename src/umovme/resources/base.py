@@ -83,22 +83,28 @@ class ListResource(Resource):
         response = self._make_request(**params)
         return self._response_to_object(response)[self.resource_name]
 
-    def add(self, resource_dict):
+    def _prepare_xml(self, resource_dict):
         request_dict = dict()
         request_dict[self.resource_name] = resource_dict
         request_xml = dicttoxml.dicttoxml(request_dict, root=False, attr_type=False)
+        return request_xml
+
+    def add(self, resource_dict):
+        request_xml = self._prepare_xml(resource_dict)
         return self._add(request_xml)
 
     def _add(self, resource_xml):
         response = self._make_request(self.resource_name, data=resource_xml, verb='post')
         return self._response_to_object(response).result
 
-    def update(self, resource_update_dict):
-        res_id = str(resource_update_dict['id'])
-        return munchify(json.loads(
-            self._make_request(
-                self.resource_name, resource_id=res_id, data=resource_update_dict, verb='put'
-            ).text))
+    def update(self, resource_dict):
+        res_id = str(resource_dict.pop('id'))
+        request_xml = self._prepare_xml(resource_dict)
+        return self._update(res_id, request_xml)
+
+    def _update(self, res_id, resource_xml):
+        response = self._make_request(self.resource_name + '/' + res_id, data=resource_xml, verb='post')
+        return self._response_to_object(response).result
 
     def command(self, resource_update_dict, **kwargs):
         res_id = str(resource_update_dict['id'])

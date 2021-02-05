@@ -28,19 +28,21 @@ class ActivityResource(ListResource):
     resource_name = 'activity'
 
 
-class ActivityHistoryResource(ListResource):
-    resource_name = 'activityHistory'
-
-
 class ScheduleResource(ListResource):
     resource_name = 'schedule'
+
+
+class MessageResource(ListResource):
+    resource_name = 'message'
+
+
+class ActivityHistoryResource(ListResource):
+    resource_name = 'activityHistory'
 
 
 class ScheduleItemResource(ListResource):
     resource_name = 'scheduleItem'
 
 
-class MessageResource(ListResource):
-    resource_name = 'message'
 
 

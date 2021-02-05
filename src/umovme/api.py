@@ -19,7 +19,8 @@ def _do_verb(verb, url, payload):
         params['headers'] = {
             'Content-Type': 'application/xml; charset=utf-8'
         }
-        params['data'] = payload.decode()
+        params['params'] = 'data=' + payload.decode()
+        # params['data'] = payload.decode()
     elif verb == 'get':
         params['params'] = payload
 
@@ -54,5 +55,5 @@ class APIClient(object):
         url.path.segments.extend(self.get_options(kwargs))
 
         payload = kwargs.get('extra') or kwargs.get('data')
-
-        return _do_verb(verb, str(url), payload=payload)
+        verb = _do_verb(verb, str(url), payload=payload)
+        return verb
