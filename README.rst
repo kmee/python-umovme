@@ -51,7 +51,7 @@ Overview
     :alt: Supported implementations
     :target: https://pypi.org/project/umovme
 
-.. |commits-since| image:: https://img.shields.io/github/commits-since/kmee/python-umovme/v0.0.0.svg
+.. |commits-since| image:: https://img.shields.io/github/commits-since/kmee/python-umovme/v0.0.1.svg
     :alt: Commits since latest release
     :target: https://github.com/kmee/python-umovme/compare/v0.0.0...master
 
