@@ -23,7 +23,7 @@ def read(*names, **kwargs):
 
 setup(
     name='umovme',
-    version='0.0.1',
+    version='0.0.2',
     license='MIT',
     description='Umovme Api Python Client',
     long_description='%s\n%s' % (
